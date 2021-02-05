@@ -1,0 +1,46 @@
+body{
+    background: rgb(238,174,202);
+    background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(231,233,148,1) 100%);}
+h1{
+    font-size: 3rem;
+}
+h3{
+    font-size: 1.5rem;
+}
+h1,h3,
+form {
+  min-width: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+.completed{
+    text-decoration: line-through ;
+}
+.formA{
+    height: 30px;
+    margin: 20px;
+
+}
+.todos{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.todo{
+        border-radius: 10%;
+    width: 20vw;
+    margin: 15px;
+    padding: 10px;
+    list-style: none;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+.delete-button,.check-button{
+    margin-right: 10px;
+    position: relative;
+    left: 10vw;
+}

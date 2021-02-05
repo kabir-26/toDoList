@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      <%= title %>
+    </title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css"
+      integrity="sha256-46r060N2LrChLLb5zowXQ72/iKKNiw/lAmygmHExk/o="
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/css/home.css" />
+  </head>
+  <body>
+    <header>
+      <h1>
+        <i class="fas fa-clipboard-list"></i>
+           &nbsp; ToDo List
+      </h1>
+      
+      <h3>
+        Category : <% if(category == undefined){ category = "All"}%>
+        <%= category %>       
+
+         
+      </h3>
+    </header>
+
+    <form action="/add" method="POST">
+      <input type="text" name="name" id="todo-input" class="formA" placeholder="Enter Task" required />
+      <select name="category" class="formA" required>
+        <option value="" disabled selected>Choose a Category</option>
+        <option value="General">General</option>
+        <option value="Personal">Personal</option>
+        <option value="Work">Work</option>
+        <option value="Other">Other</option>
+      </select>
+      <input type="date" name="date" id="todo-date" class="formA" required />
+      <button class="formA" type="submit">Submit</button>
+    </form>
+
+    <form action="/" method="POST">
+      <input type="radio" name="category" class="formA" id="all" value="All" />
+      <label for="all">All</label>
+      <input type="radio" name="category" class="formA" id="general" value="General" />
+      <label for="general">General</label>
+      <input type="radio" name="category" class="formA" id="personal" value="Personal" />
+      <label for="personal">Personal</label>
+      <input type="radio" name="category" class="formA" id="work" value="Work" />
+      <label for="work">Work</label>
+      <input type="radio" name="category" class="formA" id="other" value="Other" />
+      <label for="other">Other</label>
+      <button class="formA" type="submit">Filter</button>
+    </form>
+
+    <div class="todo-container">
+      <ul class="todos">
+        <%for(let todo of todos){
+          if(todo.status) {%>
+        <div class="todo" style="opacity: 0.5;">
+          <%} else{ %>
+        <div class="todo">
+            <%}%>
+            <li class="todo-name"><%= todo.name %></li>
+            <p class="category">Category : <span><%= todo.category %></span></p>
+            <p class="last-date">Last Date : <span><%= todo.date%></span></p>
+            <a class="check-button" href="/update-status/?id=<%= todo._id %>"><i class="fas fa-check"></i></a>
+            <a class="delete-button"href="/delete/?id=<%= todo._id %>"><i class="fas fa-trash"></i></a>        
+        </div>
+        <%}%>
+      </ul>
+    </div>
+
+    <script src="/js/home.js"></script>
+  </body>
+</html>
